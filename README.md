@@ -99,14 +99,6 @@ Authorization: Bearer <token_if_configured>
 - Swagger endpoint list and schema ![Swagger UI](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/swagger.png)
 - Sample of Serilog output (console or file) ![Log Sample](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/logsample.png)
 
-```bash
-docs/
-└─ images/
-   ├─ app-screenshot.png
-   ├─ swagger-ui.png
-   └─ log-sample.png
-```
-
 ---
 
 ## 🧪 .http Files

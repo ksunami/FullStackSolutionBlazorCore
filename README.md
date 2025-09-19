@@ -1,10 +1,5 @@
 # FullStack Solution Blazor Net Core
 
-![App Screenshot](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/client.png)
-![Swagger UI](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/swagger.png)
-![Log Sample](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/logsample.png)
-
-> Repository: https://github.com/ksunami/FullStackSolutionBlazorCore
 
 A clean, minimal, and practical full‑stack sample using **Blazor WebAssembly** (Client) + **ASP.NET Core Minimal API** (Server).
 The solution emphasizes **clarity over ceremony**, **structured logging with Serilog**, and **simple integration** between client and server.
@@ -97,12 +92,12 @@ Authorization: Bearer <token_if_configured>
 
 ---
 
-## 📸 Screenshots (placeholders)
+## 📸 Screenshots 
 
-Put real screenshots in `docs/images/` so they render here:
-- `docs/images/app-screenshot.png` — Home / FetchProducts page
-- `docs/images/swagger-ui.png` — Swagger endpoint list and schema
-- `docs/images/log-sample.png` — Sample of Serilog output (console or file)
+
+- Home / FetchProducts page ![App Screenshot](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/client.png)
+- Swagger endpoint list and schema ![Swagger UI](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/swagger.png)
+- Sample of Serilog output (console or file) ![Log Sample](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/logsample.png)
 
 ```bash
 docs/

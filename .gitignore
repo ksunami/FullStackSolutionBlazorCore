@@ -1,0 +1,60 @@
+# Build results
+bin/
+obj/
+out/
+Debug/
+Release/
+
+# Rider / VS Code / VS
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+Logs/
+*.log
+
+# Cache
+.vscode/
+*.local.json
+*.cache
+.vscode-test/
+
+# ASP.NET / Blazor artifacts
+wwwroot/dist/
+wwwroot/build/
+node_modules/
+dist/
+
+# Publish outputs
+publish/
+*.Publish.xml
+
+# Packages
+*.nupkg
+*.snupkg
+packages/
+*.lock.json
+
+# Coverage
+coverage/
+*.coverage
+*.coveragexml
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Secrets (be careful: manage via dotnet user-secrets or env vars)
+appsettings.Development.json
+appsettings.Local.json
+*.secret.json
+
+# System
+.DS_Store
+Thumbs.db

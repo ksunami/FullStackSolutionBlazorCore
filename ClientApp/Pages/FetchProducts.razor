@@ -1,0 +1,140 @@
+@page "/fetchproducts"
+@page "/fetchproducts/{currentPage:int}/{pageSize:int}/{searchTerm?}"
+
+@inject NavigationManager Navigation
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+@inject HttpClient Http
+
+@using System.Text.Json
+@using ClientApp.Models
+@using Microsoft.AspNetCore.Components
+
+<h3>Product List</h3>
+
+<input type="text" @bind="searchTerm" @bind:event="oninput" placeholder="Search products..." />
+<button @onclick="Search">Search</button>
+
+<ul>
+    @if (products != null && products.Length > 0)
+    {
+        foreach (var product in products)
+        {
+            <li>@product.Category.Name - @product.Name - $@product.Price</li>
+        }
+    }
+    else if (products != null)
+    {
+        <li>No products found.</li>
+    }
+    else
+    {
+        <li>Loading...</li>
+    }
+</ul>
+
+@if (totalPages > 1)
+{
+    <div>
+        <button @onclick="PreviousPage" disabled="@(!CanGoBack)">Previous</button>
+        Page @currentPage of @totalPages
+        <button @onclick="NextPage" disabled="@(!CanGoForward)">Next</button>
+    </div>
+}
+
+@code {
+    private Product[]? products;
+
+    [Parameter] public int currentPage { get; set; } = 1;
+    [Parameter] public int pageSize { get; set; } = 5;
+    [Parameter] public string? searchTerm { get; set; } = string.Empty;
+
+    private int totalPages = 1;
+
+    private bool CanGoBack => currentPage > 1;
+    private bool CanGoForward => currentPage < totalPages;
+
+private bool initialized = false;
+
+protected override async Task OnInitializedAsync()
+{
+    if (!initialized)
+    {
+        currentPage = await LocalStorage.GetItemAsync<int?>("currentPage") ?? 1;
+        searchTerm = await LocalStorage.GetItemAsync<string>("searchTerm") ?? string.Empty;
+        initialized = true;
+    }
+}
+
+protected override async Task OnParametersSetAsync()
+{
+    // Ensure valid route parameters
+    if (currentPage <= 0) currentPage = 1;
+    if (pageSize <= 0) pageSize = 5;
+
+    await LoadProductsAsync();
+}
+
+    private async Task LoadProductsAsync()
+    {
+        try
+        {
+            await LocalStorage.SetItemAsync("currentPage", currentPage);
+            await LocalStorage.SetItemAsync("searchTerm", searchTerm ?? "");
+
+            var token = "my-secret-token-123";
+            var query = $"/api/productlist?page={currentPage}&pageSize={pageSize}&search={Uri.EscapeDataString(searchTerm ?? "")}";
+
+            var request = new HttpRequestMessage(HttpMethod.Get, query);
+            request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            var response = await Http.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            var json = await response.Content.ReadAsStringAsync();
+            products = JsonSerializer.Deserialize<Product[]>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            var totalCount = 100; // Replace with actual count if available
+            totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error fetching products: {ex.Message}");
+            products = Array.Empty<Product>();
+        }
+    }
+
+    private void NavigateToPage(int newPage)
+    {
+        var uri = $"/fetchproducts/{newPage}/{pageSize}/{Uri.EscapeDataString(searchTerm ?? "")}";
+        Navigation.NavigateTo(uri);
+    }
+
+    private void NextPage()
+    {
+        if (CanGoForward)
+        {
+            currentPage++;
+            NavigateToPage(currentPage);
+        }
+    }
+
+    private void PreviousPage()
+    {
+        if (CanGoBack)
+        {
+            currentPage--;
+            NavigateToPage(currentPage);
+        }
+    }
+
+    private void Search()
+    {
+        currentPage = 1;
+        NavigateToPage(currentPage);
+    }
+
+    
+}

@@ -1,0 +1,51 @@
+### Health Check
+GET http://localhost:5206/health
+Accept: application/json
+
+###
+
+### Unauthorized access (no token)
+GET http://localhost:5206/api/productlist
+Accept: application/json
+
+###
+
+### Invalid token
+GET http://localhost:5206/api/productlist
+Authorization: Bearer wrong-token
+Accept: application/json
+
+###
+
+### Authorized access — full product list
+GET http://localhost:5206/api/productlist
+Authorization: Bearer my-secret-token-123
+Accept: application/json
+
+###
+
+### Authorized access — page 1, size 5
+GET http://localhost:5206/api/productlist?page=1&pageSize=5
+Authorization: Bearer my-secret-token-123
+Accept: application/json
+
+###
+
+### Authorized access — page 2, size 3
+GET http://localhost:5206/api/productlist?page=2&pageSize=3
+Authorization: Bearer my-secret-token-123
+Accept: application/json
+
+###
+
+### Authorized access — search filter
+GET http://localhost:5206/api/productlist?search=mouse
+Authorization: Bearer my-secret-token-123
+Accept: application/json
+
+###
+
+### Swagger UI (dev only)
+GET http://localhost:5206/swagger/index.html
+
+###

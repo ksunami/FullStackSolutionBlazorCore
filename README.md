@@ -1,4 +1,4 @@
-# FullStackSolutionBlazorCore
+# FullStack Solution Blazor Net Core
 
 ![App Screenshot](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/client.png)
 ![Swagger UI](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/swagger.png)

@@ -1,8 +1,8 @@
 # FullStackSolutionBlazorCore
 
-![App Screenshot](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/images/app-screenshot.png)
-![Swagger UI](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/images/swagger-ui.png)
-![Log Sample](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/images/log-sample.png)
+![App Screenshot](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/client.png)
+![Swagger UI](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/swagger.png)
+![Log Sample](https://github.com/ksunami/FullStackSolutionBlazorCore/blob/main/docs/logsample.png)
 
 > Repository: https://github.com/ksunami/FullStackSolutionBlazorCore
 
